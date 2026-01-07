@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoVista - Find Your Right Car or Bike</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Using Feather Icons for lightweight SVGs -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container flex justify-between items-center">
+            <a href="index.html" class="logo">
+                <span>Auto</span>Vista
+            </a>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i data-feather="menu"></i>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="compare.html">Compare</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="#footer">More</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>See Every Ride Clearly</h1>
+            <p>The most trustworthy platform to buy Cars & Bikes in India</p>
+            
+            <div class="search-box">
+                <div class="search-tabs">
+                    <button class="tab-btn active" data-type="car">Search Cars</button>
+                    <button class="tab-btn" data-type="bike">Search Bikes</button>
+                </div>
+                <div class="search-input-wrapper">
+                    <i data-feather="search" class="search-icon"></i>
+                    <input type="text" placeholder="Search by Brand or Model..." id="heroSearchInput">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars -->
+    <section class="section container">
+        <div class="flex justify-between items-center mb-lg">
+            <h2>Featured Cars</h2>
+            <a href="cars.html" class="btn-link">View All Cars <i data-feather="arrow-right"></i></a>
+        </div>
+        <div class="grid vehicle-grid" id="featuredCarsGrid">
+            <!-- Cars injected by JS -->
+        </div>
+    </section>
+
+    <!-- Featured Bikes -->
+    <section class="section container bg-light">
+        <div class="flex justify-between items-center mb-lg">
+            <h2>Featured Bikes</h2>
+            <a href="bikes.html" class="btn-link">View All Bikes <i data-feather="arrow-right"></i></a>
+        </div>
+        <div class="grid vehicle-grid" id="featuredBikesGrid">
+            <!-- Bikes injected by JS -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo"><span>Auto</span>Vista</div>
+                    <p>India's leading automobile marketplace.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Overview</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">FAQs</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Advertise</a>
+                    <a href="#">Dealer Solutions</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 AutoVista. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

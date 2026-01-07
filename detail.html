@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Details - AutoVista</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container flex justify-between items-center">
+            <a href="index.html" class="logo"><span>Auto</span>Vista</a>
+            <button class="menu-toggle" id="menuToggle"><i data-feather="menu"></i></button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="compare.html">Compare</a>
+                <a href="reviews.html">Reviews</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container section">
+        <div id="vehicleDetailContainer">
+            <!-- Loading or JS content -->
+            <p>Loading vehicle details...</p>
+        </div>
+    </div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const type = params.get('type') || 'car';
+
+            const container = document.getElementById('vehicleDetailContainer');
+
+            if (!id || !window.vehiclesData) {
+                container.innerHTML = '<h2>Vehicle not found</h2>';
+                return;
+            }
+
+            const collection = type === 'car' ? window.vehiclesData.cars : window.vehiclesData.bikes;
+            const vehicle = collection.find(v => v.id === id);
+
+            if (vehicle) {
+                document.title = `${vehicle.brand} ${vehicle.model} - AutoVista`;
+                container.innerHTML = `
+                    <div class="detail-header flex justify-between items-center">
+                        <div>
+                            <h1>${vehicle.brand} ${vehicle.model}</h1>
+                            <p class="text-muted">${vehicle.type === 'car' ? 'Latest Sedan/SUV' : 'Latest Bike'} • 4.5 <i data-feather="star" style="width:14px; fill: orange; stroke: none"></i></p>
+                        </div>
+                        <div class="price-badge">
+                            <span style="font-size:1.5rem; font-weight:700; color:var(--primary-color)">${vehicle.price}</span>
+                            <br><small>Ex-Showroom Price</small>
+                        </div>
+                    </div>
+
+                    <div class="detail-grid">
+                        <div class="detail-main">
+                            <img src="${vehicle.image}" alt="${vehicle.model}">
+                            
+                            <h3 style="margin-top: 30px">Key Specifications</h3>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Engine</span>
+                                    <span class="spec-value">${vehicle.specs.engine}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Power</span>
+                                    <span class="spec-value">${vehicle.specs.power}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Mileage</span>
+                                    <span class="spec-value">${vehicle.mileage}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Transmission</span>
+                                    <span class="spec-value">${vehicle.transmission}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-sidebar">
+                            <div class="price-box">
+                                <h3>Interested?</h3>
+                                <p style="margin-bottom: 20px">Get the best offers from dealers in your city.</p>
+                                <button class="btn btn-primary" style="width:100%; margin-bottom: 10px">Contact Dealer</button>
+                                <button class="btn btn-outline" style="width:100%">Book Test Drive</button>
+                                
+                                <hr style="margin: 20px 0; border-top: 1px solid #eee">
+                                
+                                <h4>EMI Calculator</h4>
+                                <p class="text-muted" style="margin-bottom: 10px">Starting from ₹ 10,000/month</p>
+                                <a href="#" style="color:var(--primary-color); font-weight:600">Calculate EMI &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                feather.replace();
+            } else {
+                container.innerHTML = '<h2>Vehicle not found</h2>';
+            }
+        });
+    </script>
+</body>
+
+</html>

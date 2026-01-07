@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Bikes - AutoVista</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container flex justify-between items-center">
+            <a href="index.html" class="logo"><span>Auto</span>Vista</a>
+            <button class="menu-toggle" id="menuToggle"><i data-feather="menu"></i></button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html" class="active">Bikes</a>
+                <a href="compare.html">Compare</a>
+                <a href="reviews.html">Reviews</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container page-layout">
+        <!-- Sidebar -->
+        <aside class="filters-sidebar">
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <label class="filter-option"><input type="checkbox" name="price" value="1-2"> ₹ 1 - 2 Lakh</label>
+                <label class="filter-option"><input type="checkbox" name="price" value="2-3"> ₹ 2 - 3 Lakh</label>
+                <label class="filter-option"><input type="checkbox" name="price" value="3-5"> ₹ 3 - 5 Lakh</label>
+            </div>
+            <div class="filter-group">
+                <h4>Brand</h4>
+                <label class="filter-option"><input type="checkbox" name="fuel" value="RE"> Royal Enfield</label>
+                <label class="filter-option"><input type="checkbox" name="fuel" value="Yamaha"> Yamaha</label>
+                <label class="filter-option"><input type="checkbox" name="fuel" value="TVS"> TVS</label>
+            </div>
+            <button class="btn btn-primary" onclick="applyFilters()" style="width: 100%">Apply Filters</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <h2>New Bikes</h2>
+            <div class="grid vehicle-grid" id="bikesGrid">
+                <!-- Bikes -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        feather.replace();
+        // Initialize Listings
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('bikesGrid');
+            if (window.vehiclesData && grid) {
+                grid.innerHTML = window.vehiclesData.bikes.map(c => createVehicleCard(c)).join('');
+                feather.replace();
+            }
+        });
+    </script>
+</body>
+
+</html>

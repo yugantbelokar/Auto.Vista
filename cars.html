@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Cars - AutoVista</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container flex justify-between items-center">
+            <a href="index.html" class="logo"><span>Auto</span>Vista</a>
+            <button class="menu-toggle" id="menuToggle"><i data-feather="menu"></i></button>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="cars.html" class="active">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="compare.html">Compare</a>
+                <a href="reviews.html">Reviews</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container page-layout">
+        <!-- Sidebar -->
+        <aside class="filters-sidebar">
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <label class="filter-option"><input type="checkbox" name="price" value="5-10"> ₹ 5 - 10 Lakh</label>
+                <label class="filter-option"><input type="checkbox" name="price" value="10-15"> ₹ 10 - 15 Lakh</label>
+                <label class="filter-option"><input type="checkbox" name="price" value="15-20"> ₹ 15 - 20 Lakh</label>
+            </div>
+            <div class="filter-group">
+                <h4>Fuel Type</h4>
+                <label class="filter-option"><input type="checkbox" name="fuel" value="Petrol"> Petrol</label>
+                <label class="filter-option"><input type="checkbox" name="fuel" value="Diesel"> Diesel</label>
+                <label class="filter-option"><input type="checkbox" name="fuel" value="Electric"> Electric</label>
+            </div>
+            <div class="filter-group">
+                <h4>Transmission</h4>
+                <label class="filter-option"><input type="checkbox" name="trans" value="Manual"> Manual</label>
+                <label class="filter-option"><input type="checkbox" name="trans" value="Automatic"> Automatic</label>
+            </div>
+            <button class="btn btn-primary" onclick="applyFilters()" style="width: 100%">Apply Filters</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <h2>New Cars</h2>
+            <div class="grid vehicle-grid" id="carsGrid">
+                <!-- Cars -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        feather.replace();
+        // Initialize Listings
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('carsGrid');
+            if (window.vehiclesData && grid) {
+                grid.innerHTML = window.vehiclesData.cars.map(c => createVehicleCard(c)).join('');
+                feather.replace();
+            }
+        });
+    </script>
+</body>
+
+</html>
